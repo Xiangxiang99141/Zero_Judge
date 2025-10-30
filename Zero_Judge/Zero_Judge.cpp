@@ -1,34 +1,34 @@
 ﻿#include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
-vector<int> getMaxMin(vector<int> i);
+string split(string s);
+string split_input(string i) {
+    vector <string> s;
+    string result = "";
+    s.push_back(split(i));
+    for (int j = s.size(); j >= 0; j--) {
+        if (j == 0) result += s[j];
+		else result += s[j] + " ";
+    }
+    return result;
+}
+
+string split(string s) {
+	auto a = s.find(" ");
+	string test =  s.substr(0, a) ;
+    //cout << test << endl;
+	return test;
+}
+
 int main()
 {
-    vector<int> numbers;
-    int behine_zero = 0;
-    int input=0;
-	vector<int> max_min;
+    vector<string> numbers;
+    string input="";
     while (cin >> input) {
-        if (input == -9999) break;
-        if (input < 0) behine_zero++;
-        numbers.push_back(input);
+        if (input == "- 9999") break;
+        numbers.push_back(split_input(input));
     }
-	max_min = getMaxMin(numbers);
-	cout << max_min[0] << "," << max_min[1] << "," << numbers.size() - behine_zero << "," << behine_zero << endl;
 
-
-    //std::cout << "Hello World!\n";
 }
 
-vector<int> getMaxMin(vector<int> i) {
-    vector<int> t;
-	int max = i[0];
-	int min = i[0];
-	for (int n : i) {
-		if (n > max) max = n;
-		if (n < min) min = n;
-	}
-	t.push_back(max);
-	t.push_back(min);
-    return t ;
-}
