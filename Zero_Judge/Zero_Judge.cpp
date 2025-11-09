@@ -1,34 +1,34 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 using namespace std;
-string split(string s);
-string split_input(string i) {
-    vector <string> s;
-    string result = "";
-    s.push_back(split(i));
-    for (int j = s.size(); j >= 0; j--) {
-        if (j == 0) result += s[j];
-		else result += s[j] + " ";
-    }
-    return result;
-}
+void split(string ,vector<string>&);
 
-string split(string s) {
-	auto a = s.find(" ");
-	string test =  s.substr(0, a) ;
-    //cout << test << endl;
-	return test;
+void split(string s,vector<string>&result) {
+    //vector<string> result;
+    stringstream ss(s);
+	string word;
+    while (ss >> word) {
+		result.push_back(word);
+    }
+	//return result;
 }
 
 int main()
 {
     vector<string> numbers;
     string input="";
-    while (cin >> input) {
-        if (input == "- 9999") break;
-        numbers.push_back(split_input(input));
+    vector<string> result;
+    while (getline(cin,input)) {
+		result.clear();
+        if (input == "-9999") break;
+		split(input, result);
+        for (int i = result.size() - 1; i >= 0; i--) {
+			cout << result[i];
+            if (i != 0) cout << " ";
+            else cout << endl;
+        }
     }
-
 }
 
