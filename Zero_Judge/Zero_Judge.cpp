@@ -28,7 +28,8 @@ int main()
 	string new_str = "";
 	for (int i = 0; i < str_len; i++) {
 		//找當前位置是否在pass_numbers中
-		if (find(pass_numbers.begin(), pass_numbers.end(), i+1) == pass_numbers.end()) {
+		vector<int>::iterator it = find(pass_numbers.begin(), pass_numbers.end(), i + 1);
+		if (it == pass_numbers.end()) {
 			new_str += s[i];
 		}
 	}
