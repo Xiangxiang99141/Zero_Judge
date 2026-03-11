@@ -3,34 +3,22 @@
 #include <cmath>
 #include <algorithm>
 using namespace std;
-void split(string, int[]);
 int main()
 {
-    string num = "";
-    int nums[3] = { 0 };
-    while (cin >> num) {
-        //cout << num;
-        split(num, nums);
-        nums[2] = abs(nums[0] + nums[1]);
-        cout << nums[0] << "," << nums[1] << "," << nums[2];
+    int year = 0;
+    std::string a[10] = { "甲","乙","丙","丁","戊","己","庚","辛","壬","癸" };
+    std::string b[12] = { "子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"};
+    int basic_year = 1954;
+    int basic_posistion[2] = { 0,6 };
+    while (cin >> year) {
+        //判斷與基本年差距
+		int diff = year - basic_year;
+        //計算循環幾次跟榆樹
+        int ten_gan = ((diff % 10)+10)%10;
+        int float_zhi = ((basic_posistion[1] + diff % 12) + 12)%12; //雙取榆樹讓數字變為正數
+        cout << a[ten_gan] << b[float_zhi];
         cout << endl;
     }
 }
 
-void split(string str, int ns[]) {
-    auto pt = str.find(".");
-    if (pt != std::string::npos) {
-		ns[0] = stoi(str.substr(0, pt));
-        string t = str.substr(pt + 1);
-        size_t first = t.find_first_not_of('0');
-        if(first != std::string::npos) {
-            size_t last = t.find_last_not_of('0');
-            ns[1] = stoi(t.substr(first, last - first + 1));//只擷取前後不是0的區塊
-        }
-        else ns[1] = 0;
-    }
-    else {
-        ns[0] = stoi(str);
-    }
-}
 
