@@ -5,12 +5,13 @@ int main()
 {
     int x = 0;
     while(cin >> x){
-        if (isPrime(x)) {
-		    cout << x << "是質數" << endl;
+        for (int a = x-1; a > 1; a--) {
+            if (isPrime(a)) {
+                cout << a << endl;
+                break;
+            }
         }
-        else {
-		    cout << x << "不是質數" << endl;
-        }
+        
     }
 }
 bool isPrime(int number)
