@@ -4,14 +4,14 @@ bool isPrime(int);
 int main()
 {
     int x = 0;
-    cin >> x;
-    if (isPrime(x)) {
-		cout << x << "是質數" << endl;
+    while(cin >> x){
+        if (isPrime(x)) {
+		    cout << x << "是質數" << endl;
+        }
+        else {
+		    cout << x << "不是質數" << endl;
+        }
     }
-    else {
-		cout << x << "不是質數" << endl;
-    }
-    
 }
 bool isPrime(int number)
 {
